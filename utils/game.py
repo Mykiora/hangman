@@ -10,7 +10,7 @@ class Hangman:
         # Select a word randomly in the possible_words list
         self.word_to_find = self.possible_words[randint(0, len(self.possible_words) - 1)]
         self.lives = 5
-        # Generate a list containing underscores depending of the words's number of letters.
+        # Generate a list containing underscores depending of the words' number of letters.
         self.correctly_guessed_letters = ['_' for letter in self.word_to_find]
         self.wrongly_guessed_letters = []
         self.turn_count = 0
@@ -18,18 +18,18 @@ class Hangman:
     
     def play(self) -> None:
         """
-        Function that will manage a single turn. Gets player's input, check for validity,
-        then updates the word's correctly and wrongly guessed as well as life, error, and
+        Function that will manage a single turn. Gets player's input, checks for validity,
+        then updates correctly and wrongly guessed words as well as life, error, and
         turn count.
         """
         letter = input('Choose a letter : ')
-        # Stay in the loop as long as the user input is not a single alpha character.
+        # Stay in the loop as long as the user input is not a single unused alpha character.
         while not letter.isalpha() or len(letter) > 1 or letter in self.wrongly_guessed_letters or letter.upper() in self.correctly_guessed_letters:
             print('Invalid input. Enter only one letter that you have not already used.')
             letter = input('Please try again : ')
         # When the input is correct, we are out of the loop. Check if the input is in the word.
         if letter in self.word_to_find:
-            # Keep track of the letters' index to have an easier time replacing underscores.
+            # Keep track of the letters' indexes to have an easier time replacing underscores.
             for index, current_letter in enumerate(self.word_to_find):
                 if current_letter == letter:
                     self.correctly_guessed_letters[index] = letter.upper()
@@ -57,7 +57,7 @@ class Hangman:
 
     def game_over(self) -> None:
         """
-        Displays game over message and stops the program.
+        Displays a game over message and stops the program.
         """
         print('No more lives. Game Over.')
         exit()
